@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component {
+
+	state = {
+		loading: true,
+		dataPoint: null
+	};
+
+	async componentDidMount() {
+		const url = "https://5h9n1wytff.execute-api.us-east-2.amazonaws.com/default/serverlessAppFunction";
+		const response = await fetch(url);
+		const data = await response.json();
+		this.setState({dataPoint: data[0], loading: false});
+		console.log(data[0])
+	}
+
+	render() {
+		return <div>
+			{this.state.loading || !this.state.dataPoint ? 
+				(<div>loading...</div> ): 
+				(<div>{this.state.dataPoint.Payload.temperature}</div>)
+			}
+		</div>;
+	}
+
 }
 
-export default App;
