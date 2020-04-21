@@ -4,22 +4,24 @@ export default class App extends React.Component {
 
 	state = {
 		loading: true,
-		dataPoint: null
+		allData: null
 	};
 
 	async componentDidMount() {
 		const url = "https://5h9n1wytff.execute-api.us-east-2.amazonaws.com/default/serverlessAppFunction";
 		const response = await fetch(url);
 		const data = await response.json();
-		this.setState({dataPoint: data[0], loading: false});
+		this.setState({allData: data, loading: false});
+		console.log(JSON.stringify(data))
+	
 		console.log(data[0])
 	}
 
 	render() {
 		return <div>
-			{this.state.loading || !this.state.dataPoint ? 
+			{this.state.loading || !this.state.allData ? 
 				(<div>loading...</div> ): 
-				(<div>{this.state.dataPoint.Payload.temperature}</div>)
+				(<div>{JSON.stringify(this.state.allData)}</div>)
 			}
 		</div>;
 	}
