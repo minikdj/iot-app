@@ -12,8 +12,8 @@ export default class App extends React.Component {
 		const url = "https://5h9n1wytff.execute-api.us-east-2.amazonaws.com/default/serverlessAppFunction";
 		const response = await fetch(url);
 		const data = await response.json();
-		this.setState({allData: data, loading: false});
-		let parsedData = parseData(data);
+		let cleanData = parseData(data);	
+		this.setState({allData: cleanData, loading: false});
 	}
 
 	render() {
@@ -44,7 +44,5 @@ async function parseData(data) {
 		cleanData.soilMoisture.push(data[i].Payload['soil moisture']);
 		cleanData.light.push(data[i].Payload.light);
 	}
-
-        console.log(cleanData)	
-	return data.Payload;
+	return cleanData;
 }
