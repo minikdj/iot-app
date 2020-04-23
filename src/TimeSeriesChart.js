@@ -20,14 +20,14 @@ const TimeSeriesChart = ({ chartData }) => (
         dataKey = 'timestamp'
         domain = {['auto', 'auto']}
         name = 'Time'
-        tickFormatter = {(unixTime) => moment(unixTime).format('HH:mm Do')}
+        tickFormatter = {chartData.timestamp}
         type = 'number'
       />
       <YAxis dataKey = 'light' name = 'Light' />
 
       <Scatter
         data = {chartData}
-        line = {{ stroke: '#eee' }}
+        line = {{ stroke: '#000' }}
         lineJointType = 'monotoneX'
         lineType = 'joint'
         name = 'Values'
