@@ -80,14 +80,13 @@ export default class App extends React.Component {
 				</React.Fragment>
 			}
 			<div className="graph">
-			<Graph sensorData={this.state.allData}/>
 			</div>
 			<div className="buttonGroup">
 			<ButtonGroup toggle>
 			<ToggleButton type="radio" name="showData" variant='dark' defaultChecked value="1">
 			Temperature
 			</ToggleButton>
-			<ToggleButton type="radio" name="showData" variant='dark' value="2">
+			<ToggleButton type="radio" name="showData" variant='dark' onChange= {<Graph sensorData={this.state.allData}/>} value="2">
 			Light Level
 			</ToggleButton>
 			<ToggleButton type="radio" name="showData" variant='dark' value="3">
