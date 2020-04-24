@@ -23,7 +23,6 @@ class App extends Component {
 	}
 
 	render() {
-		console.log(this.state.chartData)
 		return <div>
 			{this.state.loading || !this.state.allData ? 
 				(<div>loading...</div> ): 
@@ -34,16 +33,16 @@ class App extends Component {
 				)
 			}
 		<div>
-			<Button variant="primary"
+			<Button variant={(this.state.dataSelection === 'temperature') ? 'primary' : 'outline-primary'}
 				onClick={() => this.setState({dataSelection: 'temperature'})}>
 				Temperature</Button>{' '}	
-			<Button variant="primary"
+			<Button variant={(this.state.dataSelection === 'humidity') ? 'primary' : 'outline-primary'}
 				onClick={() => this.setState({dataSelection: 'humidity'})}>
 				Humidity</Button>{' '}	
-			<Button variant="primary"
+			<Button variant={(this.state.dataSelection === 'soilMoisture') ? 'primary' : 'outline-primary'}
  				onClick={() => this.setState({dataSelection: 'soilMoisture'})}>
 				Soil Moisture</Button>{' '}	
-			<Button variant="primary"
+			<Button variant={(this.state.dataSelection === 'light') ? 'primary' : 'outline-primary'}
 				onClick={() => this.setState({dataSelection: 'light'})}>
 				Light</Button>{' '}		
 		</div>
