@@ -28,11 +28,27 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.cardHeader {
+  text-align:center;
+  width:auto;
+  padding-bottom: 10px;
+}
+
+.graph {
+  width:auto;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top:30px;
+
+}
+
+.buttonGroup {
+  width:auto;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top:30px;
+
 }
