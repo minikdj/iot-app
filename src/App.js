@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-//import Chart from './Chart'
-//import './App.scss'
 import TimeSeriesChart from './TimeSeriesChart.js'
+import Button from 'react-bootstrap-button-loader';
 
 class App extends Component {
 
@@ -9,7 +8,8 @@ class App extends Component {
 	state = {
 		loading: true,
 		allData: null,
-		chartData: []
+		chartData: [],
+		dataSelection: 'humidity'
 	};
 
 	async componentDidMount() {
@@ -28,10 +28,16 @@ class App extends Component {
 			{this.state.loading || !this.state.allData ? 
 				(<div>loading...</div> ): 
 				(
-				<TimeSeriesChart chartData={this.state.chartData} />
+				<TimeSeriesChart 
+					chartData={this.state.chartData} 
+					yAxis={this.state.dataSelection}/>
 				)
 			}
+		<div>
+			<Button variant="primary">Primary</Button>{' '}		
+		</div>
 		</div>;
+
 	}
 
 }
@@ -69,7 +75,10 @@ function convertForRecharts(data) {
 		var splitTimestamp = data.timestamp[i].split('-').join(',').split(':').join(',').split(' ').join(',').split(',')
 		let curObject = {
 					timestamp: toTimestamp(splitTimestamp[2], splitTimestamp[0], splitTimestamp[1], splitTimestamp[3], splitTimestamp[4], splitTimestamp[5]),
-					light: data.light[i]
+					light: data.light[i],
+					temperature: data.temperature[i],
+					humidity: data.humidity[i],
+					soilMoisture: data.soilMoisture[i]	
 				}
 		chartData.push(curObject);
 	}

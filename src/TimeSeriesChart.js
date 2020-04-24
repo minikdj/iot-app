@@ -13,7 +13,7 @@ import {
   YAxis,
 } from 'recharts'
 
-const TimeSeriesChart = ({ chartData }) => (
+const TimeSeriesChart = ({ chartData, yAxis }) => (
   <ResponsiveContainer width = '95%' height = {500} >
     <ScatterChart>
       <XAxis
@@ -23,7 +23,7 @@ const TimeSeriesChart = ({ chartData }) => (
         tickFormatter = {chartData.timestamp}
         type = 'number'
       />
-      <YAxis dataKey = 'light' name = 'Light' />
+      <YAxis dataKey = {yAxis} name = {yAxis} />
 
       <Scatter
         data = {chartData}
