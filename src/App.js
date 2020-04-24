@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import TimeSeriesChart from './TimeSeriesChart.js'
-import Button from 'react-bootstrap-button-loader';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
-
 
 	state = {
 		loading: true,
 		allData: null,
 		chartData: [],
-		dataSelection: 'humidity'
+		dataSelection: 'temperature'
 	};
 
 	async componentDidMount() {
@@ -18,12 +18,12 @@ class App extends Component {
 		const data = await response.json();
 		let cleanData = await parseData(data);	
 		let myChartData = await convertForRecharts(cleanData); 
-
 		this.setState({allData: cleanData, loading: false, chartData: myChartData});
 		
 	}
 
 	render() {
+		console.log(this.state.chartData)
 		return <div>
 			{this.state.loading || !this.state.allData ? 
 				(<div>loading...</div> ): 
@@ -34,7 +34,18 @@ class App extends Component {
 				)
 			}
 		<div>
-			<Button variant="primary">Primary</Button>{' '}		
+			<Button variant="primary"
+				onClick={() => this.setState({dataSelection: 'temperature'})}>
+				Temperature</Button>{' '}	
+			<Button variant="primary"
+				onClick={() => this.setState({dataSelection: 'humidity'})}>
+				Humidity</Button>{' '}	
+			<Button variant="primary"
+ 				onClick={() => this.setState({dataSelection: 'soilMoisture'})}>
+				Soil Moisture</Button>{' '}	
+			<Button variant="primary"
+				onClick={() => this.setState({dataSelection: 'light'})}>
+				Light</Button>{' '}		
 		</div>
 		</div>;
 
@@ -59,7 +70,6 @@ async function parseData(data) {
 		cleanData.soilMoisture.push(data[i].Payload['soil moisture']);
 		cleanData.light.push(data[i].Payload.light);
 	}
-	console.log(cleanData)
 	return cleanData;
 }
 
@@ -82,7 +92,6 @@ function convertForRecharts(data) {
 				}
 		chartData.push(curObject);
 	}
-	console.log(chartData)
 	return chartData;
 }
 

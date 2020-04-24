@@ -24,7 +24,6 @@ const TimeSeriesChart = ({ chartData, yAxis }) => (
         type = 'number'
       />
       <YAxis dataKey = {yAxis} name = {yAxis} />
-
       <Scatter
         data = {chartData}
         line = {{ stroke: '#000' }}
@@ -32,7 +31,6 @@ const TimeSeriesChart = ({ chartData, yAxis }) => (
         lineType = 'joint'
         name = 'Values'
       />
-
     </ScatterChart>
   </ResponsiveContainer>
 )
@@ -44,6 +42,7 @@ TimeSeriesChart.propTypes = {
       value: PropTypes.number
     })
   ).isRequired
+
 }
 
 export default TimeSeriesChart;
