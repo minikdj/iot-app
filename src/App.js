@@ -9,7 +9,8 @@ class App extends Component {
 		loading: true,
 		allData: null,
 		chartData: [],
-		dataSelection: 'temperature'
+		dataSelection: 'temperature',
+		dataSelection2: 'humidity'
 	};
 
 	async componentDidMount() {
@@ -29,9 +30,11 @@ class App extends Component {
 				(
 				<TimeSeriesChart 
 					chartData={this.state.chartData} 
-					yAxis={this.state.dataSelection}/>
+					yAxis1={this.state.dataSelection}
+					yAxis2={this.state.dataSelection2}/>
 				)
 			}
+		<div> Data Selection 1 </div>
 		<div>
 			<Button variant={(this.state.dataSelection === 'temperature') ? 'primary' : 'outline-primary'}
 				onClick={() => this.setState({dataSelection: 'temperature'})}>
@@ -46,6 +49,22 @@ class App extends Component {
 				onClick={() => this.setState({dataSelection: 'light'})}>
 				Light</Button>{' '}		
 		</div>
+		<div> Data Selection 2 </div>
+		<div>
+			<Button variant={(this.state.dataSelection2 === 'temperature') ? 'primary' : 'outline-primary'}
+				onClick={() => this.setState({dataSelection2: 'temperature'})}>
+				Temperature</Button>{' '}	
+			<Button variant={(this.state.dataSelection2 === 'humidity') ? 'primary' : 'outline-primary'}
+				onClick={() => this.setState({dataSelection2: 'humidity'})}>
+				Humidity</Button>{' '}	
+			<Button variant={(this.state.dataSelection2 === 'soilMoisture') ? 'primary' : 'outline-primary'}
+ 				onClick={() => this.setState({dataSelection2: 'soilMoisture'})}>
+				Soil Moisture</Button>{' '}	
+			<Button variant={(this.state.dataSelection2 === 'light') ? 'primary' : 'outline-primary'}
+				onClick={() => this.setState({dataSelection2: 'light'})}>
+				Light</Button>{' '}		
+		</div>
+
 		</div>;
 
 	}
