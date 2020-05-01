@@ -10,7 +10,8 @@ class App extends Component {
 		allData: null,
 		chartData: [],
 		dataSelection: 'temperature',
-		dataSelection2: 'humidity'
+		dataSelection2: 'humidity',
+		gardenIdSelection: 0
 	};
 
 	async componentDidMount() {
@@ -31,9 +32,19 @@ class App extends Component {
 				<TimeSeriesChart 
 					chartData={this.state.chartData} 
 					yAxis1={this.state.dataSelection}
-					yAxis2={this.state.dataSelection2}/>
+					yAxis2={this.state.dataSelection2}
+					gardenId={this.state.gardenIdSelection}/>
 				)
 			}
+		<div> Garden Selection </div>
+		<div>
+			<Button variant={(this.state.gardenIdSelection === 0) ? 'primary' : 'outline-primary'}
+				onClick={() => this.setState({gardenIdSelection: 0})}>
+				Dan's Garden</Button>{' '}	
+			<Button variant={(this.state.gardenIdSelection === 2) ? 'primary' : 'outline-primary'}
+				onClick={() => this.setState({gardenIdSelection: 2})}>
+				Zach's Garden</Button>{' '}	
+		</div>
 		<div> Data Selection 1 </div>
 		<div>
 			<Button variant={(this.state.dataSelection === 'temperature') ? 'primary' : 'outline-primary'}

@@ -14,30 +14,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
-/*
-const TimeSeriesChart = ({ chartData, yAxis }) => (
-  <ResponsiveContainer width = '95%' height = {500} >
-    <ScatterChart>
-      <XAxis
-        dataKey = 'timestamp'
-        domain = {['auto', 'auto']}
-        name = 'Time'
-        tickFormatter = {chartData.timestamp}
-        type = 'number'
-      />
-      <YAxis yAxisID="left" dataKey = {yAxis} name = {yAxis} />
-      <YAxis yAxisID="right" orientation="right" dataKey = "humidity" name = "humidity" />
-      <Scatter
-        data = {chartData}
-        line = {{ stroke: '#000' }}
-        lineJointType = 'monotoneX'
-        lineType = 'joint'
-        name = 'Values'
-      />
-    </ScatterChart>
-  </ResponsiveContainer>
-)
-*/
+
 const TimeSeriesChart = ({ chartData, yAxis1, yAxis2 }) => (
 	<LineChart
 		width={1000}
@@ -53,8 +30,8 @@ const TimeSeriesChart = ({ chartData, yAxis1, yAxis2 }) => (
 	        <YAxis yAxisId="right" orientation="right" />
 		<Tooltip />
 		<Legend />
-		<Line yAxisId="left" type="monotone" dataKey={yAxis1} label={yAxis1} stroke="#ff0000" activeDot={{ r: 8 }} />
-		<Line yAxisId="right" type="monotone" dataKey={yAxis2} label={yAxis2} stroke="#00ff00" /> 
+		<Line yAxisId="left" type="monotone" dataKey={yAxis1} label={yAxis1} stroke="#000000" activeDot={{ r: 8 }} strokeWidth={3}      />
+		<Line yAxisId="right" type="monotone" dataKey={yAxis2} label={yAxis2} stroke="#6666ff" activeDot={{ r: 8 }} strokeWidth={3}	/> 
 </LineChart>
 );
 
