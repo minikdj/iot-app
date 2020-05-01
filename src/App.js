@@ -30,7 +30,7 @@ class App extends Component {
 				(<div>loading...</div> ): 
 				(
 				<TimeSeriesChart 
-					chartData={this.state.chartData} 
+					chartData={parseForGardenId(this.state.chartData, this.state.gardenIdSelection)} 
 					yAxis1={this.state.dataSelection}
 					yAxis2={this.state.dataSelection2}
 					gardenId={this.state.gardenIdSelection}/>
@@ -47,16 +47,16 @@ class App extends Component {
 		</div>
 		<div> Data Selection 1 </div>
 		<div>
-			<Button variant={(this.state.dataSelection === 'temperature') ? 'primary' : 'outline-primary'}
+			<Button variant={(this.state.dataSelection === 'temperature') ? 'dark' : 'outline-dark'}
 				onClick={() => this.setState({dataSelection: 'temperature'})}>
 				Temperature</Button>{' '}	
-			<Button variant={(this.state.dataSelection === 'humidity') ? 'primary' : 'outline-primary'}
+			<Button variant={(this.state.dataSelection === 'humidity') ? 'dark' : 'outline-dark'}
 				onClick={() => this.setState({dataSelection: 'humidity'})}>
 				Humidity</Button>{' '}	
-			<Button variant={(this.state.dataSelection === 'soilMoisture') ? 'primary' : 'outline-primary'}
+			<Button variant={(this.state.dataSelection === 'soilMoisture') ? 'dark' : 'outline-dark'}
  				onClick={() => this.setState({dataSelection: 'soilMoisture'})}>
 				Soil Moisture</Button>{' '}	
-			<Button variant={(this.state.dataSelection === 'light') ? 'primary' : 'outline-primary'}
+			<Button variant={(this.state.dataSelection === 'light') ? 'dark' : 'outline-dark'}
 				onClick={() => this.setState({dataSelection: 'light'})}>
 				Light</Button>{' '}		
 		</div>
@@ -107,6 +107,17 @@ function toTimestamp(year, month, day, hour, minute, second) {
 	return datum.getTime()/1000;
 }
 
+function parseForGardenId(data, id) {
+	let gardenData = []
+	for (var i = 0; i < data.length; i++) {
+		if (data[i].gardenId === id) {
+			gardenData.push(data[i])
+		}
+	}
+	console.log(gardenData)
+	return gardenData;
+}	
+
 function convertForRecharts(data) {
 	let chartData = []
 
@@ -117,7 +128,8 @@ function convertForRecharts(data) {
 					light: data.light[i],
 					temperature: data.temperature[i],
 					humidity: data.humidity[i],
-					soilMoisture: data.soilMoisture[i]	
+					soilMoisture: data.soilMoisture[i],
+					gardenId: data.gardenID[i]
 				}
 		chartData.push(curObject);
 	}

@@ -15,7 +15,7 @@ import {
   YAxis,
 } from 'recharts'
 
-const TimeSeriesChart = ({ chartData, yAxis1, yAxis2 }) => (
+const TimeSeriesChart = ({ chartData, yAxis1, yAxis2, gardenId }) => (
 	<LineChart
 		width={1000}
 		height={500}
