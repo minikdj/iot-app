@@ -15,7 +15,7 @@ class App extends Component {
 	};
 
 	async componentDidMount() {
-		const url = "https://5h9n1wytff.execute-api.us-east-2.amazonaws.com/default/serverlessAppFunction";
+		const url = "http://ec2-3-21-171-75.us-east-2.compute.amazonaws.com:9000"
 		const response = await fetch(url);
 		const data = await response.json();
 		let cleanData = await parseData(data);	
@@ -114,7 +114,6 @@ function parseForGardenId(data, id) {
 			gardenData.push(data[i])
 		}
 	}
-	console.log(gardenData)
 	return gardenData;
 }	
 
